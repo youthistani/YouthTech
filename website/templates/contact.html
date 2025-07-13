@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% include "subnav.html" %}
+{% endblock nav %}
+
+
+
+{% block content %}
+        
+    <section class="contact-us" style='margin-top:15%;'>
+        <h1>
+            Contact Us
+        </h1>
+        <div class="row">
+            <div class="contact-col" style='color: black;'>
+                <div>
+                    <i class="fa fa-home"></i>
+                    <span >
+                        <h5>
+                            xyz rood, ABC block
+                        </h5>
+                        <p>
+                            Bannu KPK, Pakistan.
+                        </p>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa fa-envelope-o"></i>
+                    <span>
+                        <h5>
+                            info@gmial.com
+                        </h5>
+                        <p>
+                            Email us Your Query.
+                        </p>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <span>
+                        <h5>
+                            📞 +14509000702
+                        </h5>
+                        <p>
+                            Monday to Saturday. 10am to 6pm
+                        </p>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-col">
+                <form action="{% url 'contact' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="Enter Your name" required>
+                    <input type="Email" name="email" placeholder="example@gmail.com">
+                    <input type="text" name="subject" placeholder="Enter your subject">
+                    <textarea name="message" rows='3' placeholder="message"></textarea>
+                    <button type='submit' class="hero-btn red-btn">SEND MESSSAGE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

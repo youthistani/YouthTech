@@ -1,0 +1,86 @@
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Build output
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Misc
+*.swp
+*.bak
+*.tmp
+
+# Mac system files
+.AppleDouble
+.LSOverride
+
+# Windows image file caches
+ehthumbs.db
+
+# VS Code settings
+.history/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Parcel-bundler cache
+.cache/
+
+# SvelteKit
+.svelte-kit/
+
+# Next.js
+.next/
+
+# Nuxt.js
+.nuxt/
+
+# Remix
+.build/
+
+# Storybook
+.storybook-out/
+storybook-static/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# JetBrains IDEs
+*.iml
+.idea/

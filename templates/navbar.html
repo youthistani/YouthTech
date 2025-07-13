@@ -1,0 +1,98 @@
+{% load static %}
+<header class="header">
+    <nav>
+        <a href="#">
+            <img src="{% static 'images/logo.png' %}" alt="logo">
+        </a>    
+        <div class="nav-links">
+            <ul>
+                <li>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'programs' %}">
+                        Courses
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'blogs'%}">
+                        Blog
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        More <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url 'donation_list' %}" class="text-dark">
+                                Blood Bank
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}" class="text-dark">
+                                Contact
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'results' %}" class="text-dark">
+                                Results
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'verify_result' %}" class="text-dark">
+                                Marks Verification
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'verify_certificate' %}" class="text-dark">
+                                Certificate Verification
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}" class="text-dark">
+                                About us
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'logout' %}" class="text-dark">
+                                Logout
+                            </a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="{% url 'login' %}" class="text-dark">
+                                Login
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>            
+            </ul>
+        </div>
+        
+    </nav>
+    <div class="text-box">
+        <h1>
+            Youth Skills & Technical Institute
+        </h1>
+        <h2>
+            Inspiring Minds, Transforming Lives
+        </h2>    
+            
+        
+        <p>
+            At Youth Skill & Technical Institute, our mission is to go beyond traditional education by focusing on skill development and personal growth. We believe that true learning lies in equipping individuals with practical, industry-relevant expertise that empowers them to thrive in today’s competitive world.
+            using an advance quality scoring Algorithm and Machine Learning, we ensure that you recive more <br> Ideas from our top creatives.
+            
+        </p>
+        <a href="{% url 'about' %}" class='hero-btn'>
+            Vist Us to know more
+        </a>
+    </div>
+    
+</header>

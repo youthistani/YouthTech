@@ -1,0 +1,48 @@
+{% extends "admin_base.html" %}
+
+{% load static %}
+
+{% block content %}
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="card p-4 bg-white rounded shadow-sm">
+                        <h2 class="mb-4">All Courses ({{ courses|length }})</h2>
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Course Name</th>
+                                    <th scope="col">Program</th>
+                                    <th scope="col">Update</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for course in courses %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ course.name }}</td>
+                                    <td>{{ course.program.name }}</td>
+                                    <td>
+                                        <a href="{% url 'course_update' course.id %}" class="btn btn-primary btn-sm">
+                                           <i class="bi bi-pencil"></i> Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'course_delete' course.id %}" class="btn btn-danger btn-sm">
+                                           <i class="bi bi-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">No courses found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <a href="{% url 'course_create' %}" class="btn btn-primary mt-3">Add New Course</a>
+                    </div>
+                </div>
+            </div>
+{% endblock content %}

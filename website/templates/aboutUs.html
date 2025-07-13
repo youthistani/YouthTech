@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav %}
+{% include "subnav.html" %}
+{% endblock nav %}
+
+
+
+
+
+{% block content %}  
+    <!--               About us          -->
+    <section class='course'>
+        <h1 class='display-6' style="text-align: center; margin-top: 65px;">
+            ABOUT US
+        </h1>
+        <p class='lead'style="font-weight: 400; text-align: center; margin-bottom: 50px;">
+            Empowering you with industry-relevant skills.Your gateway to a brighter future. Established with a vision to bridge the gap between education and industry, we are dedicated to providing high-quality, skill-based training that prepares individuals for success in today’s competitive world. Our institute specializes in technical and professional development programs, including IT, project management, safety supervision, and other in-demand disciplines. With a strong focus on hands-on learning and real-world application, we aim to empower students with practical expertise, innovation, and adaptability to meet the challenges of modern industries. At Youth Skill & Technical Institute, we believe that education is more than just certificates—it's about building skills, fostering confidence, and unlocking potential. Our experienced instructors, state-of-the-art facilities, and industry-driven curriculum ensure that every student receives the tools they need to excel in their career. Join us and take the first step towards a future filled with opportunities, growth, and success. Together, we’ll build the skills that drive change and create lasting impact. 
+        </p>
+        <section class="staff-hero-section text-center py-5 bg-light">
+            
+                <h2 class="display-2 text-dark">Meet Our Dedicated Team</h2>
+                <p class="lead">
+                    Our staff members are the backbone of our institute, bringing expertise, passion, and dedication to every aspect of our programs. They are committed to guiding you on your journey to success.
+                </p>
+            
+        </section>
+        
+        <div class="row">
+            {% for member in staff_members %}
+            <div class="col-lg-4 col-md-4 col-sm-12 mb-4 d-flex align-items-stretch">
+            <div class="course-col w-100">
+                <img src="{{ member.image.url }}" alt="{{ member.name }}">
+                <h3>
+                {{ member.name }}
+                </h3>
+                <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                {{ member.description|safe }}
+                </p>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </section>
+    
+
+
+    <!--facilities-->
+    <section class="facilities">
+        <h1 style="color: #000000;">
+            Our Facilities
+        </h1>
+        <p style="color: #000000;">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque officiis sapiente commodi. Amet tempore ut incidunt. Accusantium magnam numquam facilis excepturi consequuntur, voluptatum nam possimus beatae, necessitatibus saepe eaque aliquid.
+        </p>
+        <div class="row">
+            <div class="facilities-col">
+                <img src="{% static 'images/web.avif'%}" alt="">
+                <h3 style="color: #000000;">
+                    World Class Laibrary
+                </h3>
+                <p style="color: #000000;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo veniam ipsa aliquam! Officiis, voluptates id sunt labore quibusdam mollitia repellat, quod laborum exercitationem voluptatibus nam reiciendis dolorem quasi magnam?
+                </p>
+            </div>
+            <div class="facilities-col">
+                <img src="{% static 'images/webcrs.avif'%}" alt="">
+                <h3 style="color: #000000;">
+                    Largest Play Ground
+                </h3>
+                <p style="color: #000000;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo veniam ipsa aliquam! Officiis, voluptates id sunt labore quibusdam mollitia repellat, quod laborum exercitationem voluptatibus nam reiciendis dolorem quasi magnam?
+                </p>
+            </div>
+            <div class="facilities-col">
+                <img src="{% static 'images/scholarship.jpg'%}" alt="">
+                <h3 style="color: #000000;">
+                    Fraindly Enviroment
+                </h3>
+                <p style="color: #000000;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo veniam ipsa aliquam! Officiis, voluptates id sunt labore quibusdam mollitia repellat, quod laborum exercitationem voluptatibus nam reiciendis dolorem quasi magnam?
+                </p>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}  

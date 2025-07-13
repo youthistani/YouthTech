@@ -1,0 +1,17 @@
+{% load static %}
+
+    <h2>YOUTH SKILL & TECHNICAL INSTITUTE, BANNU</h2>
+    <h3>📍 Admission Form</h3>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="hero-btn red-btn">
+            Submit Application
+        </button>
+    </form>
+
+    <br>
+    <p>For inquiries, WhatsApp +14509000702.</p>
+

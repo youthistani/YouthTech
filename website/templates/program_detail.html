@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+{% include "subnav.html" %}
+{% endblock nav %}
+
+
+
+{% block content %}
+<div class="container py-5" style="margin-top:15%">
+    <div class="row justify-content-center" style="margin-top: 100px; background-color:rgb(206, 213, 220); padding: 20px; border-radius: 10px; color: #000;">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <h2 class="fw-bold">
+                {{ program.name }}
+            </h2>
+            <img src="{{ program.image.url }}" alt="{{ program.name }}" class="img-responsive img-thumbnail rounded shadow-lg my-4">
+            <p class="fs-5">
+                <strong>
+                    Duration:
+                </strong>
+                 {{ program.duration }} months.
+            </p>
+            <p class="fs-5">
+                <strong>
+                    Fee:
+                </strong> 
+                <span class="text-success">
+                    PKR {{ program.fee }} Rs.
+                </span>
+            </p>
+            <p class="lead">
+                {{ program.description }}
+            </p> 
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 p-5">
+            {% include "admission_form.html" %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

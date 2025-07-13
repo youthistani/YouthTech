@@ -1,0 +1,24 @@
+{% extends "admin_base.html" %}
+
+
+{% block content %}
+<h2 class="text-center mb-4">Create New Application</h2>
+<div class="card shadow-lg">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_program" class="form-label">Program</label>
+                <select name="program" id="id_program" class="form-select">
+                    {% for program in programs %}
+                        <option value="{{ program.id }}">{{ program.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+            <a href="{% url 'admin_applications' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}

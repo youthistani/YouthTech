@@ -1,0 +1,159 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<h1 class="text-center mb-4">Manage Applications</h1>
+<div class="card shadow-lg">
+    <div class="card-body">
+        <a href="{% url 'application_create' %}" class="btn btn-primary mb-3">
+            <i class="bi bi-plus-circle"></i> Apply New
+        </a>
+        <table class="table table-hover table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Applicant Name</th>
+                    <th>Father Name</th>
+                    <th>Program</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ application.full_name }}</td>
+                    <td>{{ application.father_name }}</td>
+                    <td>{{ application.selected_program }}</td>
+                    <td>
+                        <span class="badge 
+                            {% if application.status == 'pending' %}bg-warning
+                            {% elif application.status == 'approved' %}bg-success
+                            {% elif application.status == 'rejected' %}bg-danger
+                            {% else %}bg-secondary{% endif %}">
+                            {{ application.status|capfirst }}
+                        </span>
+                    </td>
+                    <td>{{ application.submitted_at|date:"Y-m-d" }}</td>
+                    <td>
+                        <!-- View Details Modal Trigger -->
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewApplicationModal{{ application.id }}">
+                            <i class="bi bi-eye"></i> View
+                        </button>
+                        <!-- Approve/Reject Forms -->
+                        {% if application.status == 'pending' %}
+                        <form action="{% url 'application_approve' application.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">
+                                <i class="bi bi-check-circle"></i> Approve
+                            </button>
+                        </form>
+                        <form action="{% url 'application_reject' application.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="bi bi-x-circle"></i> Reject
+                            </button>
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                <!-- View Details Modal -->
+                <div class="modal fade" id="viewApplicationModal{{ application.id }}" tabindex="-1" aria-labelledby="viewApplicationModalLabel{{ application.id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="viewApplicationModalLabel{{ application.id }}">Application Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Applicant:</strong> {{ application.full_name }}</p>
+                                <p><strong>Father Name:</strong> {{ application.father_name }}</p>
+                                <p><strong>Date of Birth:</strong> {{ application.date_of_birth }}</p>
+                                <p><strong>Gender:</strong> {{ application.gender }}</p>
+                                <p><strong>CNIC Number:</strong> {{ application.cnic_number }}</p>
+                                <p><strong>Contact Number:</strong> {{ application.contact_number }}</p>
+                                <p><strong>Email:</strong> {{ application.email|default:"N/A" }}</p>
+                                <p><strong>Address:</strong> {{ application.address }}</p>
+                                <hr>
+                                <p><strong>Highest Qualification:</strong> {{ application.highest_qualification }}</p>
+                                <p><strong>Year of Passing Matric:</strong> {{ application.year_of_passing_matric }}</p>
+                                <p><strong>Matric Institution:</strong> {{ application.matric_institution }}</p>
+                                <hr>
+                                <p><strong>Selected Program:</strong> {{ application.selected_program }}</p>
+                                <p><strong>Scholarship:</strong> {{ application.scholarship }}</p>
+                                <hr>
+                                <p><strong>CNIC Copy:</strong>
+                                    {% if application.cnic_copy %}
+                                        <a href="{{ application.cnic_copy.url }}" target="_blank">View</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </p>
+                                <p><strong>Passport Photo:</strong>
+                                    {% if application.passport_photo %}
+                                        <a href="{{ application.passport_photo.url }}" target="_blank">View</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </p>
+                                <p><strong>Matric Certificate:</strong>
+                                    {% if application.matric_certificate %}
+                                        <a href="{{ application.matric_certificate.url }}" target="_blank">View</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </p>
+                                <p><strong>Payment Proof:</strong>
+                                    {% if application.payment_prof %}
+                                        <a href="{{ application.payment_prof.url }}" target="_blank">View</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </p>
+                                <hr>
+                                <p><strong>Submitted:</strong> {{ application.submitted_at|date:"Y-m-d H:i" }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <!-- Update Button -->
+                                <a href="{% url 'application_update' application.id %}" class="btn btn-primary">
+                                    <i class="bi bi-pencil-square"></i> Update
+                                </a>
+                                <!-- Delete Button -->
+                                <form action="{% url 'application_delete' application.id %}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this application?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                                <!-- Accept/Reject Buttons (only if pending) -->
+                                {% if application.status == 'pending' %}
+                                    <form action="{% url 'application_approve' application.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="bi bi-check-circle"></i> Accept
+                                        </button>
+                                    </form>
+                                    <form action="{% url 'application_reject' application.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-warning">
+                                            <i class="bi bi-x-circle"></i> Reject
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+
+

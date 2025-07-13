@@ -1,0 +1,62 @@
+{% extends "admin_base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row g-4">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="stat-card text-center p-4 rounded shadow-sm h-100 bg-primary text-white stat-card-hover">
+                        <div class="course-col">
+                            <h2 class="display-5 mb-1">{{ programs|length }}</h2>
+                            <p class="text-muted mb-0">Programs</p>
+                        </div>
+                    </div>
+                    <style>
+                        .stat-card-hover {
+                            transition: transform 0.2s, box-shadow 0.2s;
+                        }
+                        .stat-card-hover:hover {
+                            transform: translateY(-5px) scale(1.03);
+                            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                            background: linear-gradient(90deg, #007bff 60%, #0056b3 100%);
+                        }
+                        .stat-card-hover .text-muted {
+                            color: #e0e0e0 !important;
+                        }
+                    </style>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="stat-card text-center p-4 rounded shadow-sm h-100 bg-primary text-white stat-card-hover">
+                        <div class="course-col">
+                            <h2 class="display-5 mb-1 text-white">{{ courses|length }}</h2>
+                            <p class="text-muted mb-0 text-white">Courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="stat-card text-center p-4 rounded shadow-sm h-100 bg-primary text-white stat-card-hover">
+                        <div class="course-col">
+                            <h2 class="display-5 mb-1 text-white">{{ students|length }}</h2>
+                            <p class="text-muted mb-0 text-white">Students</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="stat-card text-center p-4 rounded shadow-sm h-100 bg-primary text-white stat-card-hover">
+                        <div class="course-col">
+                            <h2 class="display-5 mb-1 text-white">{{ applications|length }}</h2>
+                            <p class="text-muted mb-0 text-white">Applications</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="stat-card text-center p-4 rounded shadow-sm h-100 bg-primary text-white stat-card-hover">
+                        <div class="course-col">
+                            <h2 class="display-5 mb-1 text-white">{{ staff_members|length }}</h2>
+                            <p class="text-muted mb-0 text-white">Staff</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock content %}

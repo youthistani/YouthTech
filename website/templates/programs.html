@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block nav %}
+{% include "subnav.html" %}
+{% endblock nav %}
+
+
+
+
+{% block content %}
+    <!--====================Courses====================-->
+    <section class='course'>
+        <h1 style="text-align: center; margin-top: 65px;">
+            Courses We Offer
+        </h1>
+        <p style="font-weight: 400; text-align: center; margin-bottom: 50px;">
+            At Youth Skill & Technical Institute, we offer a diverse range of courses designed to equip you with the skills and knowledge needed to excel in your career. Our programs are tailored to meet the demands of various industries, ensuring that you receive practical training that is relevant and up-to-date.
+            using an advance quality scoring Algorithm and Machine Learning, we ensure that you recive more Ideas from our top creatives. 
+        </p>
+        <div class="row" >
+            {% for program in programs %}
+            <div class="course-col" style="padding: 1%">
+                <img src="{{ program.image.url }}" alt="{{ program.name }}">
+                <h3>
+                    {{ program.name }}
+                </h3>
+                <p>
+                    {{ program.description|truncatewords:25 }}
+                </p>
+                <a href="{% url 'program_detail' program.pk %}" class='hero-btn red-btn'>
+                    Enroll Now
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+{% endblock content %}

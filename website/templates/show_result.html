@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    {% include "subnav.html" %}
+{% endblock nav %}
+
+
+
+{% block content %}
+<div style="margin: 18% 5% 5% 5%">
+    <section class="staff-hero-section text-center py-5 bg-light">     
+        <h2 class="display-2 text-dark">Results</h2>
+        <p class="lead text-dark">
+            Our staff members are the backbone of our institute, bringing expertise, passion, and dedication to every aspect of our programs. They are committed to guiding you on your journey to success.
+        </p>
+    </section>
+    {% if pdf_url %}
+        <div class="my-4 text-center">
+            <h4 class="mb-3">Download or View PDF Result</h4>
+            <a href="{{ pdf_url }}" class="btn btn-success mb-2" target="_blank">Download PDF</a>
+            <div class="embed-responsive" style="height:600px;">
+                <iframe src="{{ pdf_url }}" width="100%" height="100%" style="border:none;"></iframe>
+            </div>
+        </div>
+    {% endif %}
+    <h2 class="display-2 text-dark">
+        Program-wise Results
+    </h2>
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Program</th>
+                <th scope="col">Total Marks</th>
+                <th scope="col">Obtained Marks</th>
+                <th scope="col">Percentage</th>
+                <th scope="col">Subject-wise Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ result.student }}</td>
+                <td>{{ result.program }}</td>
+                <td>{{ result.total_marks }}</td>
+                <td>{{ result.total_obtained }}</td>
+                <td>{{ result.percentage|floatformat:2 }}%</td>
+                <td>
+                    <!-- Button to trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#subjectDetailsModal{{ forloop.counter }}">
+                        View Subjects
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="subjectDetailsModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="subjectDetailsModalLabel{{ forloop.counter }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="subjectDetailsModalLabel{{ forloop.counter }}">Subject-wise Details for {{ result.student }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Subject</th>
+                                                <th>Obtained Marks</th>
+                                                <th>Total Marks</th>
+                                                <th>Percentage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for subject, details in result.subjects.items %}
+                                            <tr>
+                                                <td>{{ subject }}</td>
+                                                <td>{{ details.obtained }}</td>
+                                                <td>{{ details.total }}</td>
+                                                <td>{{ details.percentage|floatformat:2 }}%</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center text-muted">No program results found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

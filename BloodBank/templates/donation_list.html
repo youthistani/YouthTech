@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block nav %}
+{% include "subnav.html" %}
+{% endblock nav %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}
+
+{% block content %}
+<div class="py-5 shadow-lg p-3 mb-5 bg-white rounded" style="margin-top:25%;">
+    <div style='display: flex; justify-content: space-between; margin-left: 100px; margin-right: 100px; margin-bottom: 30px;'>
+        <h3 style="color: black;"> 
+            Donors:
+        </h3>
+        <a href="{% url 'register_donor' %}" class='btn btn-dark'>
+            Register As Donor
+        </a>
+    </div>
+    <div class='container'>   
+        <table class="table table-bordered table-striped shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th> Donar Name </th>
+                        <th>Blood Type</th>
+                        <th> Contact </th>
+                        <th> Age </th>
+                        <th> Address </th>
+                        <th> Last_Donated </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for donor in donors %}
+                    <tr>
+                        <td>{{ donor.name }}</td>
+                        <td>{{ donor.blood_group }}</td>
+                        <td>{{ donor.phone }}</td>
+                        <td>{{ donor.age }}</td>
+                        <td>{{ donor.address }}</td>
+                        <td>{{ donor.last_donation_date }}</td>
+                    {% empty %}
+                    <td class="list-group-item">No donors found.</td>
+                    {% endfor %}
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+        
+</div>
+
+
+{% endblock content %}

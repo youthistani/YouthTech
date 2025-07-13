@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav %}
+{% include "navbar.html" %}
+{% endblock nav %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}
+
+{% block content %}
+    {% comment %} CEO {% endcomment %}
+    <section class="my-5">
+        <h2 class="text-center fw-bold">CEO Message</h2>
+        <div class="ceo-section">
+            <img src="{% static 'images/ceo.jpg' %}" alt="CEO" class="ceo-img">
+            <div class="ceo-text text-center">
+                <h3 class="text-center">Muhammad Usman</h3>
+                <p class="text-center">MSc Economics</p>
+                <p>Welcome to the Youth Skill & Technical Institute, where innovation meets opportunity. Our mission is to equip individuals with the technical expertise and practical skills required to excel in today’s dynamic world. Through our cutting-edge programs, industry-driven training, and hands-on experience, we empower students to become skilled professionals and future leaders.</p>
+                <p>At Youth Tech, we believe in transforming potential into success. Our commitment to excellence ensures that every learner receives quality education, mentorship, and career-building opportunities. Together, let’s shape a brighter future and drive technological advancement.</p>
+                <p><strong>- CEO, Youth Skill & Technical Institute</strong></p>
+            </div>
+        </div>
+    </section>
+
+    
+    {% comment %} CTO {% endcomment %}
+    <section id="cto" class="my-5 py-4">
+        <div class="container" style="padding-left: 150px;">
+            <div class="row align-items-center ">
+                <div class="col-md-6 ceo-text">
+                    <h2 class="text-center fw-bold">CTO Message</h2>
+                    <h3 class="text-center">Asad Niaz khan</h3>
+                    <p class="text-center">Software engineer | Cyber Security expert | Flutter Developer</p>
+                    <p>
+                        At Youth Skill & Technical Institute, we embrace technology and innovation to drive progress. 
+                        Our goal is to equip students with the latest technical knowledge and hands-on experience 
+                        to excel in today’s fast-paced digital world. 
+                    </p>
+                    <p>
+                        As the Chief Technology Officer, my vision is to foster a culture of continuous learning, 
+                        creativity, and technological advancement. Through cutting-edge courses and mentorship, 
+                        we aim to shape the tech leaders of tomorrow.
+                    </p>
+                    <p><strong>- CTO, Youth Skill & Technical Institute</strong></p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="{% static 'images/asad.jpg' %}" alt="CTO" class="ceo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class='course'>
+        <h1>
+            Courses We Offer
+        </h1>
+        <p>
+            Empowering you with industry-relevant skills. Your gateway to a brighter future.
+            Our institute stands out with state-of-the-art facilities, experienced instructors, and a curriculum tailored to meet the demands of the modern workforce. We are committed to providing hands-on training and fostering innovation to ensure your success in the industry. 
+        </p>
+        <div class="row">
+            {% for program in programs %}
+            <div class="course-col">
+                <img src="{{ program.image.url }}" alt="{{ program.name }}">
+                <h3>
+                    {{ program.name }}
+                </h3>
+                <p>
+                    {{ program.description|truncatewords:30 }}
+                </p>
+            </div>
+            {% endfor %}
+        
+        </div>
+    </section>
+    <!--facilities-->
+    <section class="facilities">
+        <h1>
+            Our Facilities
+        </h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque officiis sapiente commodi. Amet tempore ut incidunt. Accusantium magnam numquam facilis excepturi consequuntur, voluptatum nam possimus beatae, necessitatibus saepe eaque aliquid.
+        </p>
+        <div class="row">
+            <div class="facilities-col">
+                <img src="{% static 'images/web.avif'%}" alt="">
+                <h3>
+                    World Class Laibrary
+                </h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo veniam ipsa aliquam! Officiis, voluptates id sunt labore quibusdam mollitia repellat, quod laborum exercitationem voluptatibus nam reiciendis dolorem quasi magnam?
+                </p>
+            </div>
+            <div class="facilities-col">
+                <img src="{% static 'images/air.avif'%}" alt="">
+                <h3>
+                    Largest Play Ground
+                </h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo veniam ipsa aliquam! Officiis, voluptates id sunt labore quibusdam mollitia repellat, quod laborum exercitationem voluptatibus nam reiciendis dolorem quasi magnam?
+                </p>
+            </div>
+            <div class="facilities-col">
+                <img src="{% static 'images/scholarship.jpg'%}" alt="">
+                <h3>
+                    Fraindly Enviroment
+                </h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo veniam ipsa aliquam! Officiis, voluptates id sunt labore quibusdam mollitia repellat, quod laborum exercitationem voluptatibus nam reiciendis dolorem quasi magnam?
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--======================Testimonials section=====================-->
+    <section class="testimonials">
+        <h1>
+            What Our Students Says
+        </h1>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur illum officia vitae quaerat reiciendis dicta numquam suscipit sunt perferendis maxime nostrum dignissimos, perspiciatis quae amet impedit sit explicabo quibusdam similique.
+        </p>
+        <div class="row">
+            <div class="testimonials-col">
+                <img src="{% static 'images/aman.jpg' %}" alt="">
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit numquam rem dolorum? Labore iste possimus quos facere officiis, ipsum provident nostrum mollitia vel ut blanditiis cum temporibus, ducimus nesciunt numquam!
+                    </p>
+                    <h3>
+                        Aman khan
+                    </h3>
+                </div>
+            </div>
+            <div class="testimonials-col">
+                <img src="{% static 'images/amir.jpg' %}" alt="">
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit numquam rem dolorum? Labore iste possimus quos facere officiis, ipsum provident nostrum mollitia vel ut blanditiis cum temporibus, ducimus nesciunt numquam!
+                    </p>
+                    <h3>
+                        Amir khan
+                    </h3>
+                </div>    
+            </div>
+        </div>
+    </section>
+    <!--CTA-->
+    <section class="cta">
+        <h1>
+            Enroll For Our Various Courses
+        </h1>
+    <a href="{% url 'contact' %}" class="hero-btn">CONTACT US</a>
+    </section>
+{% endblock content %}
+

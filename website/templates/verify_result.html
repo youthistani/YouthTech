@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block nav %}
+    {% include "subnav.html" %}
+{% endblock nav %}
+
+
+{% block content %}
+    <div class="hero-section text-dark" style="background-color: #f4f4f4; padding: 50px 0; text-align: center;">
+        <div>
+            <p class="display-4">Verify Your Results</p>
+            <p>Enter your registration number to check your results instantly.</p>
+        </div>
+    </div>
+
+    <div class="text-dark">
+        <form method="post" action="{% url 'verify_result' %}">
+            {% csrf_token %}
+            <div class="form-group bg-white" >
+                <div class="mb-3">
+                    <label for="reg_no" class="mb-2">Student Registration Number:</label>
+                    <input type="text" id="reg_no" name="roll_number" class="form-control" placeholder="12356" required>
+                </div>
+                <div class="mb-3">
+                    <input type="number" name="session" class="form-control" placeholder="Session (e.g., 2023)" required>
+                <div>
+            </div> 
+                <button type="submit" class="hero-btn red-btn mt-3">
+                    Verify Result
+                </button>
+        </form>
+
+        {% if result %}
+            <div class="result-section" style="margin-top: 30px;">
+                <h2>Result Details</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Obtained Marks</th>
+                            <th>Total Marks</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subject, details in result.subjects.items %}
+                            <tr>
+                                <td>{{ subject }}</td>
+                                <td>{{ details.obtained }}</td>
+                                <td>{{ details.total }}</td>
+                                <td>{{ details.percentage|floatformat:2 }}%</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <h3>Total Obtained Marks: {{ result.total_obtained }}</h3>
+                <h3>Total Marks: {{ result.total_marks }}</h3>
+                <h3>Overall Percentage: {{ result.percentage|floatformat:2 }}%</h3>
+            </div>
+        {% else %}
+            <div class="no-result-section" style="margin-top: 30px;">
+                <p>No results found. Please try again.</p>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

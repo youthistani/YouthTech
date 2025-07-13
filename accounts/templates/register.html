@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block nav %}
+{% include "navbar.html" %}
+{% endblock nav %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3" style="margin-top:5%; margin-bottom:5%;">
+    <h1>
+        Sign Up
+    </h1>
+    <br>
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            <div class="alert
+            alert-success alert-dismissible fade show" role="alert">
+            Your form has errors
+                {% for field in form %}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+            {{ form.as_p }}
+        
+        {% endif %}
+
+
+
+        {{form.as_p}}
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>
+
+{% endblock content %}

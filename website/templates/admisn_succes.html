@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}
+
+
+
+{% block title %}
+{% block content %}
+<div class="container py-5 text-center">
+    <h1 class="mb-4">Thank You!</h1>
+    <p class="lead">Your Application for admission has been submitted successfully.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">HOME</a>
+</div>
+{% endblock content %}
+

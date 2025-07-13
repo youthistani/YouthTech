@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block nav %}
+    {% include "subnav.html" %}
+{% endblock nav %}
+
+{% block content %}
+    <div style="mrgin-top: 20%; margin-bottom: 20%;">
+        <h1>Certificate Verification</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="roll_number">Roll Number:</label>
+            <input type="text" id="roll_number" name="roll_number">
+        
+            <label for="registration_number">Registration Number:</label>
+            <input type="text" id="registration_number" name="registration_number">
+        
+            <button type="submit">Verify</button>
+        </form>
+
+        {% if certificate %}
+            <h2>Certificate Details</h2>
+            <p>Name: {{ certificate.student.name }}</p>
+            <p>Course: {{ certificate.course }}</p>
+            <p>Date: {{ certificate.date }}</p>
+        {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    <div> 
+{% endblock content %}
